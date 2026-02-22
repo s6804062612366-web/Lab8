@@ -1,6 +1,7 @@
 #include <stdio.h>
 int checkscore(char std[]);
 void countno1(char std[][10], char key[]);
+void findHardest(char std[][10], char key[]);
 int main() {
     char keys[10] = {'D','B','D','C','C','D','A','E','A','D'};
     char ans[8][10] = {
@@ -16,8 +17,9 @@ int main() {
     for (int i = 0; i < 8; i++) {
         printf("std %d => %d\n", i+1, checkscore(ans[i]));
     }
-
+    
     countno1(ans,keys);
+    findHardest(ans,keys);
     return 0;
 }
 
@@ -40,5 +42,24 @@ void countno1(char std[][10], char key[]) {
         }
     }
     printf("Have %d students got No.1 Right\n",count);
+}
+
+void findHardest(char std[][10], char key[]) {
+    int minCorrect = 8;
+    int hardestNo = 1;
+
+    for (int i = 0; i < 10; i++) {
+        int Correct = 0;
+        for (int j = 0; j < 8; j++) {
+            if (std[j][i] == key[i]) {
+                Correct++;
+            }
+        }
+        if (Correct < minCorrect) {
+            minCorrect = Correct;
+            hardestNo = i + 1;
+        }
+    }
+    printf("The Hardest question is No.%d\n", hardestNo);
 }
 
