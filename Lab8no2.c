@@ -1,5 +1,6 @@
 #include <stdio.h>
 int checkscore(char std[]);
+void countno1(char std[][10], char key[]);
 int main() {
     char keys[10] = {'D','B','D','C','C','D','A','E','A','D'};
     char ans[8][10] = {
@@ -15,8 +16,9 @@ int main() {
     for (int i = 0; i < 8; i++) {
         printf("std %d => %d\n", i+1, checkscore(ans[i]));
     }
-    return 0;
 
+    countno1(ans,keys);
+    return 0;
 }
 
 int checkscore(char std[]) {
@@ -29,3 +31,14 @@ int checkscore(char std[]) {
     }
     return score;
 }
+
+void countno1(char std[][10], char key[]) {
+    int count = 0;
+    for (int i = 0; i < 8; i++) {
+        if (std[i][0] == key[0]) {
+            count++;
+        }
+    }
+    printf("Have %d students got No.1 Right\n",count);
+}
+
